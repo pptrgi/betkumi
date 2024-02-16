@@ -3,20 +3,230 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="/favicon-16x16.png" type="image/png" />
-    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="icon" href="public/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="public/favicon-16x16.png" type="image/png" />
+    <link
+      rel="icon"
+      href="public/favicon-32x32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+    <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
+    <link rel="manifest" href="public/manifest.json" />
 
-    <title>BetKumi</title>
+    <title>Betkumi</title>
+
+    <style>
+      /* variables */
+      :root {
+        --bodyColor: #eee;
+        --themeColor: #252a2d;
+        --normalFont: 0.913rem;
+      }
+
+      /* base */
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: var(--bodyColor);
+        color: var(--themeColor);
+        position: relative;
+        font-size: var(--normalFont);
+      }
+
+      /* reusable css */
+      .x-margin {
+        margin: 0 1.5rem;
+      }
+
+      /* header section*/
+      .header {
+        width: 100%;
+        height: 40vh;
+        background-color: var(--themeColor);
+        position: relative;
+      }
+      .header_contents {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(0, -50%);
+      }
+      .header_texts {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        row-gap: 0.25rem;
+      }
+      .header_texts h1 {
+        color: #ed9009;
+        font-size: 5rem;
+      }
+      .header_texts img {
+        max-width: 95%;
+      }
+
+      /* countries section */
+      .countries_contents {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.25rem;
+        align-items: center;
+        margin-top: 1rem;
+      }
+      .countries_contents h3 {
+        opacity: 0.8;
+        font-size: 1.25rem;
+        font-weight: bolder;
+        letter-spacing: 0.5px;
+      }
+      .countries_wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        width: 100%;
+      }
+      .country_card {
+        padding: 1rem 0;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.75rem;
+        align-items: center;
+        border-radius: 8px;
+        max-width: 350px;
+        cursor: pointer;
+      }
+      .country_card_img {
+        width: 60px;
+      }
+      .country_card_name {
+        font-size: medium;
+        font-weight: bolder;
+        letter-spacing: 0.5px;
+      }
+
+      /* footer */
+      .footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 4rem;
+        margin-bottom: 1rem;
+      }
+      .footer_contents {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 0.5rem;
+      }
+      .footer_contents img {
+        max-width: 70px;
+        opacity: 0.6;
+      }
+      .footer_contents p {
+        opacity: 0.5;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+      }
+
+      /* MEDIA QUERIES */
+      /* mobile screens */
+      @media screen and (max-width: 480px) {
+        .header {
+          height: 30vh;
+        }
+        .header_texts h1 {
+          font-size: 2.5rem;
+        }
+        .header_texts img {
+          max-width: 99%;
+        }
+      }
+      /* non-mobile screens */
+      @media screen and (min-width: 481px) {
+        :root {
+          --normalFont: 1.25rem;
+        }
+        .countries_wrapper {
+          gap: 1rem;
+        }
+      }
+
+      /* small devices */
+      @media screen and (min-width: 481px) and (max-width: 767px) {
+        .header_texts h1 {
+          font-size: 4rem;
+        }
+        .countries_wrapper {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      /* tablets */
+      @media screen and (min-width: 768px) and (max-width: 991px) {
+        .header_texts h1 {
+          font-size: 4rem;
+        }
+        .header_texts img {
+          max-width: 80%;
+        }
+        .countries_wrapper {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      /* larger tablets */
+      @media screen and (min-width: 992px) and (max-width: 1199px) {
+        .x-margin {
+          margin: 0 2rem;
+        }
+        .header_texts img {
+          max-width: 80%;
+        }
+        .countries_wrapper {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      /* desktops */
+      @media screen and (min-width: 1200px) and (max-width: 1919px) {
+        .x-margin {
+          margin: 0 3rem;
+        }
+        .header_texts img {
+          max-width: 70%;
+        }
+        .countries_wrapper {
+          grid-template-columns: repeat(4, 1fr);
+          width: 85%;
+        }
+      }
+
+      /* extra large screens */
+      @media screen and (min-width: 1920px) {
+        .x-margin {
+          margin: 0 4rem;
+        }
+        .header_texts img {
+          max-width: 60%;
+        }
+        .countries_wrapper {
+          grid-template-columns: repeat(4, 1fr);
+          width: 60%;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="header">
       <div class="header_contents x-margin">
         <div class="header_texts">
-          <img src="/betkumi-logo.png" alt="BetKumi Logo" />
+          <img src="public/betkumi-logo.png" alt="BetKumi Logo" />
         </div>
       </div>
     </header>
@@ -24,17 +234,62 @@
     <main class="countries x-margin">
       <div class="countries_contents">
         <h3>Select your country</h3>
-        <div class="countries_wrapper" id="countries_wrapper"></div>
+        <div class="countries_wrapper" id="countries_wrapper">
+          <div class="country_card" onclick="handleCountryClick()">
+            <img
+              src="public/images/betkumi-kenya.png"
+              class="country_card_img"
+              alt="betkumi kenya"
+            />
+            <p class="country_card_name">Kenya</p>
+          </div>
+          <div class="country_card" onclick="handleCountryClick()">
+            <img
+              src="public/images/betkumi-zambia.png"
+              class="country_card_img"
+              alt="betkumi zambia"
+            />
+            <p class="country_card_name">Zambia</p>
+          </div>
+          <div class="country_card" onclick="handleCountryClick()">
+            <img
+              src="public/images/betkumi-ghana.png"
+              class="country_card_img"
+              alt="betkumi ghana"
+            />
+            <p class="country_card_name">Ghana</p>
+          </div>
+          <div class="country_card" onclick="handleCountryClick()">
+            <img
+              src="public/images/betkumi-nigeria.png"
+              class="country_card_img"
+              alt="betkumi nigeria"
+            />
+            <p class="country_card_name">Nigeria</p>
+          </div>
+        </div>
       </div>
     </main>
 
     <footer class="footer">
       <div class="footer_contents">
-        <img src="/betkumi-logo.png" alt="BetKumi Logo" />
-        <p>&#169; BetKumi 2024. All rights reserved</p>
+        <img src="public/betkumi-logo.png" alt="BetKumi Logo" />
+        <p>&#169; betkumi 2024. All Rights Reserved</p>
       </div>
     </footer>
 
-    <script type="module" src="src/main.ts"></script>
+    <script>
+      async function handleCountryClick() {
+        const response = await fetch("https://ipapi.co/json");
+        const results = await response.json();
+        const { country_name } = results;
+
+        if (country_name === "Zambia") {
+          window.location.href = "https://betkumi.co.zm";
+        } else {
+          window.location.href = "https://betkumi.co.ke";
+        }
+      }
+    </script>
   </body>
 </html>
