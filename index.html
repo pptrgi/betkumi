@@ -242,6 +242,16 @@
     </footer>
 
     <script>
+      // automatically redirect to the country url the user had visited before on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        const storedCountryUrl = localStorage.getItem("countryUrl");
+
+        if (storedCountryUrl) {
+          window.location.href = storedCountryUrl;
+        }
+      });
+
+      // check the user's location and redirect based on either the user's location or clicked country
       async function handleCountryClick(element) {
         const response = await fetch("https://ipapi.co/json");
         const results = await response.json();
@@ -250,11 +260,13 @@
         const clicked_country = element.getAttribute("data-country");
 
         if (fetched_country_name === "Zambia" || clicked_country === "Zambia") {
+          localStorage.setItem("countryUrl", "https://betkumi.co.zm");
           window.location.href = "https://betkumi.co.zm";
         } else if (
           fetched_country_name === "Kenya" ||
           clicked_country === "Kenya"
         ) {
+          localStorage.setItem("countryUrl", "https://betkumi.co.ke");
           window.location.href = "https://betkumi.co.ke";
         }
       }
